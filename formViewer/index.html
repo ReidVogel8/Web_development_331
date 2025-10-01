@@ -1,0 +1,131 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunch Form</title>
+    <link rel="stylesheet" href="main.css">
+
+</head>
+
+<body>
+<h1>Homework Example</h1>
+
+<div id="example">
+    <h3>Example PHP Form Viewers:</h3>
+    <br>
+    <label for="fv">
+        <em>These are some examples of PHP responses that show results of a form submitted to a server. To see an example of what your form viewer for your homework should do, you can paste a URL into the 'Form Processor' field, then alter the form and 'Submit' (ie: Order Lunch) to see the results. It's not neccessary to include this portion in your homework -- it is just to give you some examples.</em><p></p>
+        <ul>
+            <li><b onclick="fv.value='form-viewer.php'; handleInput()">form-viewer.php</b> (On the same server as this html file; all that's needed is the relative path) </li>
+            <li><b onclick="fv.value='https://wp.zybooks.com/form-viewer.php', handleInput()">https://wp.zybooks.com/form-viewer.php</b> (A different server; absolute path must be provided)</li>
+            <li><b onclick="fv.value='formexample.txt', handleInput()">formexample.txt</b> (The server <em>shows</em> php code as text to get you started on the homework)</li>
+            <li><b onclick="fv.value='formexample.php', handleInput()">formexample.php</b> (The server <em>runs</em> the code from the previous example)</li>
+        </ul>
+        <input id="fv" type="text" value="form-viewer.php" placeholder="URL of a PHP form viewer. Try your own!">
+    </label>
+    <h3>Send with: <span id="method">GET</span></h3>
+    <div id="getOrPost">
+        <input type="radio" name="send_method" id="get" value="GET" checked=""><label for="get">GET</label>
+        <input type="radio" name="send_method" id="post" value="POST"><label for="post">POST</label>
+    </div>
+</div>
+
+<h2>Movie Form</h2>
+
+<form id="exForm" action="form-viewer.php" method="GET">
+
+    <fieldset><legend>Radio vs Checkbox</legend>
+
+        <input type="radio" name="movie" id="rb1" value="spider-man">
+        <label for="rb1">Spider-Man</label><br>
+
+        <input type="radio" name="movie" id="rb2" value="top_gun">
+        <label for="rb2">Top Gun</label><br>
+
+        <input type="radio" name="movie" id="rb3" value="dune">
+        <label for="rb2">Dune</label><br>
+
+        <br>
+
+        <input type="checkbox" name="popcorn" id="cb1">
+        <label for="cb1">Popcorn</label><br>
+
+        <input type="checkbox" name="m&m's" id="cb3">
+        <label for="cb3">M&M's</label><br>
+        <input type="checkbox" name="skittles" id="cb4">
+        <label for="cb4">Skittles</label><br>
+    </fieldset>
+    <br>
+    <fieldset><legend>Select vs Multiselect</legend>
+        <label for="drink">Drink:</label>
+        <select name="drink" id="drink">
+            <optgroup label="Slushy">
+                <option value="strawberry shlushy">Strawberry</option>
+                <option value="root beer slushy">Root Beer</option>
+                <option value="cherry slushy">cherry</option>
+            </optgroup>
+            <optgroup label="Soda">
+                <option value="coke" selected="">Coke</option>
+                <option value="7up">7up</option>
+                <option value="dr. pepper">Dr. Pepper</option>
+            </optgroup>
+        </select><br><br>
+
+        <label for="extras">Extra:</label>
+        <select name="extras[]" id="extras" size="2" multiple="">
+            <option value="soup">Nachos</option>
+            <option value="salad">Pretzel</option>
+            <option value="chips">Chips</option>
+        </select><br>
+    </fieldset>
+
+    <fieldset><legend>Text Input</legend>
+        <label for="username">Your Name:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your name"><br><br>
+    </fieldset>
+    <br>
+    <input type="submit" value="Order">
+</form>
+
+
+
+<script>
+    // get the first (and only) form element; get it's value
+    const form = document.querySelector("form");
+
+    // set GET or POST options
+    const radioButtons = document.querySelectorAll('input[name="send_method"]');
+    const method = document.getElementById("method");
+    let selectedValue;
+    const getOrPost = document.getElementById("getOrPost")
+    getOrPost.addEventListener("click", ()=> {
+        radioButtons.forEach(radioButton => {
+            if (radioButton.checked) {
+                method.innerHTML = radioButton.value;
+                form.setAttribute("method", radioButton.value)
+            }
+        })
+    })
+
+
+
+    // get the input box element
+    const fvbox = document.getElementById("fv");
+    // on input, evaluate task...
+    fvbox.addEventListener("input", handleInput);
+
+    function handleInput() {
+        // if it's there, change form action to input box string
+        if(fvbox.value != ""){
+            form.setAttribute("action", fvbox.value)
+        }
+        else {
+            fvdefault = "form-viewer.php";
+            form.setAttribute("action", fvdefault);
+        }
+    }
+</script>
+
+
+
+</body></html>

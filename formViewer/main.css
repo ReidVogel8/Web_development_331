@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 70%;
+    margin: 20px auto;
+    background-color: gainsboro;
+}
+#fv {
+    width: 100%;
+    margin: 20px auto;
+}
+form {
+    background-color: white;
+    padding: 2em;
+}
+fieldset {
+    padding: 20px;
+    margin: 20px;
+}
+input[type=submit] {
+    font-size: 1.2em;
+    padding: 1em;
+    margin: 20px;
+}
+select {
+    width:10em
+}
+#example {
+    border: 3pt solid black;
+    padding: 2rem;
+    background-color: aliceblue;
+}
+li>b:hover {
+    color:blue;
+    cursor: pointer;
+}
