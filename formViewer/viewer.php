@@ -1,60 +1,61 @@
 <?php
-// Use $_REQUEST to handle both GET and POST
 $formData = $_REQUEST;
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Form Submission Viewer</title>
+    <title>Survey Results</title>
     <style>
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Arial', sans-serif;
             width: 70%;
             margin: 20px auto;
-            background-color: gainsboro;
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+        h2 {
+            text-align: center;
+            color: #ffcc00;
         }
         table {
             border-collapse: collapse;
-            width: 80%;
-            margin: 20px auto;
-            background-color: white;
+            width: 100%;
+            background-color: #2c2c2c;
+            box-shadow: 0 0 15px #000;
+            border-radius: 10px;
+            overflow: hidden;
         }
         th, td {
-            border: 1px solid #333;
+            border: 1px solid #ffcc00;
             padding: 10px;
             text-align: left;
         }
         th {
-            background-color: #f2f2f2;
-        }
-        h1 {
-            text-align: center;
+            background-color: #ff6600;
         }
     </style>
 </head>
 <body>
-    <h1>Submitted Form Data</h1>
-    <table>
-        <tr>
-            <th>Field</th>
-            <th>Value(s)</th>
-        </tr>
-        <?php
-        // Loop through submitted data
-        foreach($formData as $key => $value) {
-            echo "<tr><td>" . htmlspecialchars($key) . "</td><td>";
-            if(is_array($value)) {
-                // If value is an array (checkboxes, multiselect)
-                echo htmlspecialchars(implode(", ", $value));
-            } else {
-                // Single values
-                echo htmlspecialchars($value);
-            }
-            echo "</td></tr>";
+<h2>Movie Theater Survey Results</h2>
+<table>
+    <tr>
+        <th>Field</th>
+        <th>Value</th>
+    </tr>
+    <?php
+    foreach($formData as $key => $value) {
+        echo "<tr>";
+        echo "<td>" . htmlspecialchars($key) . "</td>";
+        echo "<td>";
+        if (is_array($value)) {
+            echo implode(", ", array_map('htmlspecialchars', $value));
+        } else {
+            echo htmlspecialchars($value);
         }
-        ?>
-    </table>
+        echo "</td>";
+        echo "</tr>";
+    }
+    ?>
+</table>
 </body>
 </html>

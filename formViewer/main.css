@@ -1,35 +1,54 @@
+>
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Arial', sans-serif;
     width: 70%;
     margin: 20px auto;
-    background-color: gainsboro;
+    background-color: #1a1a1a;
+    color: #fff;
 }
-#fv {
-    width: 100%;
-    margin: 20px auto;
+h1 {
+    text-align: center;
+    color: #ffcc00;
 }
 form {
-    background-color: white;
+    background-color: #a3a3a3;
     padding: 2em;
+    border-radius: 15px;
+    box-shadow: 0 0 15px #000;
 }
 fieldset {
-    padding: 20px;
-    margin: 20px;
-}
-input[type=submit] {
-    font-size: 1.2em;
+    margin-bottom: 1.5em;
     padding: 1em;
-    margin: 20px;
+    border: 1px solid #ffcc00;
+    border-radius: 10px;
 }
-select {
-    width:10em
+legend {
+    font-weight: bold;
+    color: #ffcc00;
 }
-#example {
-    border: 3pt solid black;
-    padding: 2rem;
-    background-color: aliceblue;
+label {
+    display: block;
+    margin: 5px 0;
 }
+input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background-color: #ff9900;
+}
+select, input[type="text"] {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
 li>b:hover {
-    color:blue;
+    color: #e67e22;
     cursor: pointer;
 }
