@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>LAMP Stack</title>
+</head>
+<body>
+    <h1>Lamp Stack</h1>
+    <div id="apiData"><img class="user" src="https://randomuser.me/api/portraits/women/49.jpg" alt="rando user">
+        <h2 class="user"></h2></div>
+    <div id="btns">
+        <button id="getBtn" class="btn">Get Another</button>
+        <form action="add.php" method="POST" style="display:inline;">
+            <input type="hidden" name="first" value="">
+            <input type="hidden" name="last" value="">
+            <input type="hidden" name="country" value="">
+            <button type="submit" id="addBtn" class="btn" value="Add This One"></button>
+        </form>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
+
