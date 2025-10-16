@@ -49,18 +49,14 @@ var_dump($_POST);
 
 // Collect input using POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $firstname = htmlspecialchars($_POST['first_name']);
-    $lastname = htmlspecialchars($_POST['last_name']);
+    $first_name = htmlspecialchars($_POST['first_name']);
+    $last_name = htmlspecialchars($_POST['last_name']);
     $country = htmlspecialchars($_POST['country']);
     $email = htmlspecialchars($_POST['email']);
     $address = htmlspecialchars($_POST['address']);
     // TODO: set lastname and country in the same manner as above
 
-    echo "<p>Adding <strong>$firstname</strong>.</p>";
-    echo "<p>Adding <strong>$lastname</strong>.</p>";
-    echo "<p>Adding <strong>$country</strong>.</p>";
-    echo "<p>Adding <strong>$email</strong>.</p>";
-    echo "<p>Adding <strong>$address</strong>.</p>";
+    echo "<p>Adding <strong>$first_name</strong>.</p>";
 
     // DATABASE OPERATIONS:
     // TODO: this MUST be updated to your own credentials to work on your MariaDB
@@ -77,13 +73,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Prepare SQL and bind parameters
-        $stmt = $conn->prepare("INSERT INTO people (first_name,last_name, country, email, address) VALUES (:firstname, :lastname, :country, :email, :address)");
-        $stmt->bindParam(':first_name', $firstname);
-        $stmt->bindParam(':last_name', $lastname);
-        $stmt->bindParam(':country', $country);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':address', $address);
+        $stmt = $conn->prepare("INSERT INTO people (first_name) VALUES (:firstname)");
+        $stmt->bindParam(':firstname', $firstname);
         // TODO: add lastname and country as well as firstname to the MySQL $stmt
+        $stmt = $conn->prepare("INSERT INTO people (last_name) VALUES (:lastname)");
+        $stmt->bindParam(':lastname', $lastname);
+        //country
+        $stmt = $conn->prepare("INSERT INTO people (country) VALUES (:country)");
+        $stmt->bindParam(':country', $country);
+        //email
+        $stmt = $conn->prepare("INSERT INTO people (email) VALUES (:email)");
+        $stmt->bindParam(':email', $email);
+        //address
+        $stmt = $conn->prepare("INSERT INTO people (address) VALUES (:address)");
+        $stmt->bindParam(':address', $address);
 
         echo "<div>";
         if ($stmt->execute()) {
@@ -99,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         echo "<div>";
         echo "<table>";
-        echo "<thead><tr><th>First Name</th><th>Last Name</th><th>Country</th><th>email</th><th>address</th></tr></thead><tbody>";
+        echo "<thead><tr><th>first_ame</th><th>last_name</th><th>country</th><th>email</th><th>address</th></tr></thead><tbody>";
 
         // output data of each row
         while($row = $result->fetch(PDO::FETCH_ASSOC)) {
