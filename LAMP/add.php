@@ -49,8 +49,8 @@ var_dump($_POST);
 
 // Collect input using POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $first_name = htmlspecialchars($_POST['first_name']);
-    $last_name = htmlspecialchars($_POST['last_name']);
+    $first_name = htmlspecialchars($_POST['first']);
+    $last_name = htmlspecialchars($_POST['last']);
     $country = htmlspecialchars($_POST['country']);
     $email = htmlspecialchars($_POST['email']);
     $address = htmlspecialchars($_POST['address']);
@@ -73,19 +73,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Prepare SQL and bind parameters
-        $stmt = $conn->prepare("INSERT INTO people (first_name) VALUES (:firstname)");
-        $stmt->bindParam(':firstname', $firstname);
-        // TODO: add lastname and country as well as firstname to the MySQL $stmt
-        $stmt = $conn->prepare("INSERT INTO people (last_name) VALUES (:lastname)");
-        $stmt->bindParam(':lastname', $lastname);
-        //country
-        $stmt = $conn->prepare("INSERT INTO people (country) VALUES (:country)");
+        $stmt = $conn->prepare("INSERT INTO people (first_name, last_name, country, email, address) VALUES (:first_name, :last_name, :country, :email, :address)");
+
+        $stmt->bindParam(':first_name', $first_name);
+        $stmt->bindParam(':last_name', $last_name);
         $stmt->bindParam(':country', $country);
-        //email
-        $stmt = $conn->prepare("INSERT INTO people (email) VALUES (:email)");
         $stmt->bindParam(':email', $email);
-        //address
-        $stmt = $conn->prepare("INSERT INTO people (address) VALUES (:address)");
         $stmt->bindParam(':address', $address);
 
         echo "<div>";
@@ -102,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         echo "<div>";
         echo "<table>";
-        echo "<thead><tr><th>first_ame</th><th>last_name</th><th>country</th><th>email</th><th>address</th></tr></thead><tbody>";
+        echo "<thead><tr><th>first_name</th><th>last_name</th><th>country</th><th>email</th><th>address</th></tr></thead><tbody>";
 
         // output data of each row
         while($row = $result->fetch(PDO::FETCH_ASSOC)) {
