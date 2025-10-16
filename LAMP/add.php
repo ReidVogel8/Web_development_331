@@ -62,12 +62,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // TODO: this MUST be updated to your own credentials to work on your MariaDB
     $servername = "localhost";   // same for local dev and school server
     $username = "user70";        // get this from the email
-    $password = "70mark";        // get this from the email
+    $passwords = "70mark";        // get this from the email
     $dbname = "db70";            // get this from the email
 
     try {
         // Create a PDO connection (PHP Data Object)
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $passwords);
 
         // Set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
