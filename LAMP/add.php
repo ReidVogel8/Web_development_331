@@ -19,14 +19,14 @@
         }
         table {
             width: 100%;
-            background-color: #ffffff;
+            background-color: #8e8e8e;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         h1{
             text-align: center;
-            color: #2d6ea3;
+            color: #8e8e8e;
             margin-bottom: 20px;
         }
         thead {
