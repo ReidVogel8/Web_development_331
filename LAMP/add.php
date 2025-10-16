@@ -44,74 +44,47 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// See the contents of $_POST, submitted from index.html
-var_dump($_POST);
-
-// Collect input using POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Collect input using POST
     $firstname = htmlspecialchars($_POST['first_name']);
-    $lastname = htmlspecialchars($_POST['last_name']);
-    $country = htmlspecialchars($_POST['country']);
-    $email = htmlspecialchars($_POST['email']);
-    $address = htmlspecialchars($_POST['address']);
-    // TODO: set lastname and country in the same manner as above
+    $lastname  = htmlspecialchars($_POST['last_name']);
+    $country   = htmlspecialchars($_POST['country']);
+    $email     = htmlspecialchars($_POST['email']);
+    $address   = htmlspecialchars($_POST['address']);
 
-    echo "<p>Adding <strong>$firstname</strong>.</p>";
-    echo "<p>Adding <strong>$lastname</strong>.</p>";
-    echo "<p>Adding <strong>$country</strong>.</p>";
-    echo "<p>Adding <strong>$email</strong>.</p>";
-    echo "<p>Adding <strong>$address</strong>.</p>";
-
-    // DATABASE OPERATIONS:
-    // TODO: this MUST be updated to your own credentials to work on your MariaDB
-    $servername = "localhost";   // same for local dev and school server
-    $username = "user70";        // get this from the email
-    $password = "70mark";        // get this from the email
-    $dbname = "db70";            // get this from the email
+    // Database credentials
+    $servername = "localhost";
+    $username   = "user70";
+    $password   = "70mark";
+    $dbname     = "db70";
 
     try {
-        // Create a PDO connection (PHP Data Object)
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-
-        // Set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Prepare SQL and bind parameters
-        $stmt = $conn->prepare("INSERT INTO people (first_name) VALUES (:firstname)");
+        // Insert all fields at once
+        $stmt = $conn->prepare("INSERT INTO people (first_name, last_name, country, email, address)
+            VALUES (:firstname, :lastname, :country, :email, :address)");
         $stmt->bindParam(':firstname', $firstname);
-        // TODO: add lastname and country as well as firstname to the MySQL $stmt
-        $stmt = $conn->prepare("INSERT INTO people (last_name) VALUES (:lastname)");
-        $stmt->bindParam(':lastname', $lastname);
+        $stmt->bindParam(':lastname',  $lastname);
+        $stmt->bindParam(':country',   $country);
+        $stmt->bindParam(':email',     $email);
+        $stmt->bindParam(':address',   $address);
 
-        //country
-        $stmt = $conn->prepare("INSERT INTO people (country) VALUES (:country)");
-        $stmt->bindParam(':country', $country);
-        //email
-        $stmt = $conn->prepare("INSERT INTO people (email) VALUES (:email)");
-        $stmt->bindParam(':email', $email);
-        //address
-        $stmt = $conn->prepare("INSERT INTO people (address) VALUES (:address)");
-        $stmt->bindParam(':address', $address);
-
-        echo "<div>";
         if ($stmt->execute()) {
-            echo "<p>New record created successfully</p>";
+            echo "<p>New record created successfully.</p>";
         } else {
             echo "<p>Error: Unable to create a new record.</p>";
         }
-        echo "</div>";
 
-        // Select and display all users from the database
-        $sql = "SELECT * FROM people";// MySQL: read every record from the table. Hint: https://www.w3schools.com/mysql/mysql_select.asp
+        // Display all records
+        $sql = "SELECT * FROM people";
         $result = $conn->query($sql);
 
-        echo "<div>";
         echo "<table>";
-        echo "<thead><tr><th>First Name</th><th>Last Name</th><th>Country</th><th>email</th><th>address</th></tr></thead><tbody>";
+        echo "<thead><tr><th>First Name</th><th>Last Name</th><th>Country</th><th>Email</th><th>Address</th></tr></thead><tbody>";
 
-        // output data of each row
-        while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            // TODO: change the hardcoded string to actual API data, ie: firstname, etc..
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             echo "<tr>
                     <td>" . htmlspecialchars($row['first_name']) . "</td>
                     <td>" . htmlspecialchars($row['last_name']) . "</td>
@@ -120,14 +93,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <td>" . htmlspecialchars($row['address']) . "</td>
                  </tr>";
         }
+
         echo "</tbody></table>";
-        echo "</div>";
 
     } catch (PDOException $e) {
         echo "<p>Error: " . $e->getMessage() . "</p>";
     }
 
-    // Close the connection
     $conn = null;
 
 } else {
