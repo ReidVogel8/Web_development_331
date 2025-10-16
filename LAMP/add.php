@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $last_name = htmlspecialchars($_POST['last']);
     $country = htmlspecialchars($_POST['country']);
     $email = htmlspecialchars($_POST['email']);
-    $address = htmlspecialchars($_POST['address']);
+    $address = htmlspecialchars($_POST['password']);
     // TODO: set lastname and country in the same manner as above
 
     echo "<p>Adding <strong>$first_name</strong>.</p>";
@@ -73,13 +73,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Prepare SQL and bind parameters
-        $stmt = $conn->prepare("INSERT INTO people (first_name, last_name, country, email, address) VALUES (:first_name, :last_name, :country, :email, :address)");
+        $stmt = $conn->prepare("INSERT INTO people (first_name, last_name, country, email, password) VALUES (:first_name, :last_name, :country, :email, :password)");
 
         $stmt->bindParam(':first_name', $first_name);
         $stmt->bindParam(':last_name', $last_name);
         $stmt->bindParam(':country', $country);
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':address', $address);
+        $stmt->bindParam(':password', $password);
 
         echo "<div>";
         if ($stmt->execute()) {
@@ -95,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         echo "<div>";
         echo "<table>";
-        echo "<thead><tr><th>first_name</th><th>last_name</th><th>country</th><th>email</th><th>address</th></tr></thead><tbody>";
+        echo "<thead><tr><th>first_name</th><th>last_name</th><th>country</th><th>email</th><th>password</th></tr></thead><tbody>";
 
         // output data of each row
         while($row = $result->fetch(PDO::FETCH_ASSOC)) {
