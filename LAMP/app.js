@@ -48,6 +48,12 @@ function success(userData) {
     const apiCountry = userData.results[0].location.country;
     apiform.innerHTML += `<input type="hidden" name="country" value="${apiCountry}"/>`
 
+    const apiEmail = userData.results[0].email;
+    apiform.innerHTML += `<input type="hidden" name="email" value="${apiemail}"/>`
+
+    const apiPassword = userData.results[0].password;
+    apiform.innerHTML += `<input type="hidden" name="password" value="${apiPassword}"/>`
+
     apiform.innerHTML += `<input type="submit" id="addBtn" class="btn" value="Add This One"></button>`
 }
 
