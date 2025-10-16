@@ -51,8 +51,8 @@ function success(userData) {
     const apiEmail = userData.results[0].email;
     apiform.innerHTML += `<input type="hidden" name="email" value="${apiEmail}"/>`
 
-    const apiCity = userData.results[0].city;
-    apiform.innerHTML += `<input type="hidden" name="city" value="${apiCity}"/>`
+    const apiPassword = userData.results[0].login.password;
+    apiform.innerHTML += `<input type="hidden" name="password" value="${apiPassword}"/>`
 
     apiform.innerHTML += `<input type="submit" id="addBtn" class="btn" value="Add This One"></button>`
 }
