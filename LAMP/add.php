@@ -45,7 +45,6 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // See the contents of $_POST, submitted from index.html
-var_dump($_POST);
 
 // Collect input using POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
