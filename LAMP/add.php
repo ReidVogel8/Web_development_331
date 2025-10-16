@@ -105,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <td>" . htmlspecialchars($row['last_name']) . "</td>
                     <td>" . htmlspecialchars($row['country']) . "</td>
                     <td>" . htmlspecialchars($row['email']) . "</td>
-                    <td>" . htmlspecialchars($row['address']) . "</td>
+                    <td>" . htmlspecialchars($row['password']) . "</td>
                  </tr>";
         }
         echo "</tbody></table>";
