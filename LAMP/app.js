@@ -49,7 +49,7 @@ function success(userData) {
     apiform.innerHTML += `<input type="hidden" name="country" value="${apiCountry}"/>`
 
     const apiEmail = userData.results[0].email;
-    apiform.innerHTML += `<input type="hidden" name="email" value="${apiemail}"/>`
+    apiform.innerHTML += `<input type="hidden" name="email" value="${apiEmail}"/>`
 
     const apiPassword = userData.results[0].password;
     apiform.innerHTML += `<input type="hidden" name="password" value="${apiPassword}"/>`
