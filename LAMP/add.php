@@ -49,10 +49,18 @@ var_dump($_POST);
 
 // Collect input using POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $firstname = htmlspecialchars($_POST['first']);
+    $firstname = htmlspecialchars($_POST['first_name']);
+    $lastname = htmlspecialchars($_POST['last_name']);
+    $country = htmlspecialchars($_POST['country']);
+    $email = htmlspecialchars($_POST['email']);
+    $address = htmlspecialchars($_POST['address']);
     // TODO: set lastname and country in the same manner as above
 
     echo "<p>Adding <strong>$firstname</strong>.</p>";
+    echo "<p>Adding <strong>$lastname</strong>.</p>";
+    echo "<p>Adding <strong>$country</strong>.</p>";
+    echo "<p>Adding <strong>$email</strong>.</p>";
+    echo "<p>Adding <strong>$address</strong>.</p>";
 
     // DATABASE OPERATIONS:
     // TODO: this MUST be updated to your own credentials to work on your MariaDB
