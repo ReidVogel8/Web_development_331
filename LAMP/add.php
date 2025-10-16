@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $last_name = htmlspecialchars($_POST['last']);
     $country = htmlspecialchars($_POST['country']);
     $email = htmlspecialchars($_POST['email']);
-    $address = htmlspecialchars($_POST['password']);
+    $password = htmlspecialchars($_POST['password']);
     // TODO: set lastname and country in the same manner as above
 
     echo "<p>Adding <strong>$first_name</strong>.</p>";
