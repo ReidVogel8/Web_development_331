@@ -19,7 +19,6 @@
         }
         table {
             width: 100%;
-            border-collapse: collapse;
             background-color: #ffffff;
             border-radius: 10px;
             overflow: hidden;
