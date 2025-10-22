@@ -1,0 +1,48 @@
+/* Base (mobile first) */
+.hero { padding: 1rem; background: #f7f7f7; border: 1px solid #eee; border-radius: .5rem; }
+
+.cards {
+  /* FLEX LAYOUT HERE */
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+
+img{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: .5rem;
+    margin-bottom: 1rem;
+}
+
+.card{
+    display: flex;
+    flex: 1 1 100%;
+    flex-direction: column;
+    border: 2px solid #ccc;
+    border-radius: 0.5rem;
+    padding: 3%;
+    box-sizing: border-box;
+    margin: 5px;
+    overflow: hidden;
+}
+
+
+/* Tablet (≥601px) */
+@media screen and (min-width: 601px) and (max-width: 1024px){
+    .card{
+        flex: 1 1 calc(35% - 1rem);
+    }
+
+}
+
+/* Desktop (≥1025px) */
+@media screen and (min-width: 1025px) {
+    .card{
+        flex: 1 1 calc(25% - 1rem);
+    }
+}
