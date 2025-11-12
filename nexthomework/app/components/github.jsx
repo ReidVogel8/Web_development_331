@@ -5,7 +5,7 @@ export default function Github(){
 
     return(
       <div>
-          <a href={"https://github.com/ReidVogel8/Web_development_331"}>Github_Repo</a>
+          <a href={"https://github.com/ReidVogel8/Web_development_331/tree/main/nexthomework"}>Github_Repo</a>
           <p>
              Here is the link for the GitHub repository. In this assignment, we are using next.js to
              create a website that has two different counters with different increments without
